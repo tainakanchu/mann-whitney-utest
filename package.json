@@ -1,14 +1,24 @@
 {
-  "name": "mann-whitney-utest",
-  "version": "1.0.5",
+  "name": "@tainakanchu/mann-whitney-utest",
+  "version": "1.1.0",
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
-  "main": "src/mann-whitney.js",
+  "main": "dist/mann-whitney.js",
   "scripts": {
-    "test": "node test/test.js"
+    "build": "tsc",
+    "test": "ts-node test/test.ts",
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "format": "biome check . --apply"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukem512/mann-whitney-utest.git"
+    "url": "https://github.com/tainakanchu/mann-whitney-utest.git"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
+    "@types/node": "^20.12.12",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.4.5"
   },
   "keywords": [
     "u",
@@ -22,10 +32,10 @@
     "statistics",
     "nonparametric"
   ],
-  "author": "Luke Mitchell",
+  "author": "tainakanchu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lukem512/mann-whitney-utest/issues"
+    "url": "https://github.com/tainakanchu/mann-whitney-utest/issues"
   },
-  "homepage": "https://github.com/lukem512/mann-whitney-utest"
+  "homepage": "https://github.com/tainakanchu/mann-whitney-utest"
 }
