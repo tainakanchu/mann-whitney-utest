@@ -4,7 +4,10 @@
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
   "main": "src/mann-whitney.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "format": "biome check . --apply"
   },
   "repository": {
     "type": "git",
