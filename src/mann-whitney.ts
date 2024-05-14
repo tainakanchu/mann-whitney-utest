@@ -127,7 +127,7 @@ export const significant = (u, samples) => Math.min(u[0], u[1]) < criticalValue(
 // The input should be of the form [[a, b, c], [e, f, g]]
 // where {a, b, ..., g} are numeric values forming two
 // samples.
-export const test = (samples, key) => {
+export const test = (samples) => {
   // Perform validation
   if (!Array.isArray(samples)) throw Error("Samples must be an array");
   if (samples.length !== 2) throw Error("Samples must contain exactly two samples");
