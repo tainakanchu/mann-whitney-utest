@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/lukem512/mann-whitney-utest.git"
   },
+  "devDependencies": {
+    "typescript": "~5.4.5"
+  },
   "keywords": [
     "u",
     "test",
