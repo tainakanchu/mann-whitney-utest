@@ -1,6 +1,9 @@
 # Mann-Whitney U Test
 
-[![Build Status](https://travis-ci.org/lukem512/mann-whitney-utest.svg?branch=master)](https://travis-ci.org/lukem512/mann-whitney-utest) ![Build Status](https://david-dm.org/lukem512/mann-whitney-utest.svg)  [![npm](https://img.shields.io/npm/l/mann-whitney-utest.svg)](https://www.npmjs.com/package/mann-whitney-utest) [![npm](https://img.shields.io/npm/v/mann-whitney-utest.svg)](https://www.npmjs.com/package/mann-whitney-utest) [![npm](https://img.shields.io/npm/dm/mann-whitney-utest.svg)](https://www.npmjs.com/package/mann-whitney-utest)
+> [!NOTE]
+> This package is forked from original [mann-whitney-utest](https://github.com/lukem512/mann-whitney-utest) by Luke Mitchell to support typescript.
+
+[![npm](https://img.shields.io/npm/l/@tainakanchu/mann-whitney-utest.svg)](https://www.npmjs.com/package/@tainakanchu/mann-whitney-utest) [![npm](https://img.shields.io/npm/v/@tainakanchu/mann-whitney-utest.svg)](https://www.npmjs.com/package/@tainakanchu/mann-whitney-utest) [![npm](https://img.shields.io/npm/dm/@tainakanchu/mann-whitney-utest.svg)](https://www.npmjs.com/package/@tainakanchu/mann-whitney-utest)
 
 This is an NPM module that allows you to perform the Mann-Whitney U test on numeric samples. The Mann-Whitney U test is a nonparametric statistical test that does not assume a normal distribution.
 
