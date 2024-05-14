@@ -4,7 +4,7 @@
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
   "main": "src/mann-whitney.js",
   "scripts": {
-    "test": "node test/test.js",
+    "test": "ts-node test/test.ts",
     "lint": "biome lint .",
     "check": "biome check .",
     "format": "biome check . --apply"
@@ -15,6 +15,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
+    "@types/node": "^20.12.12",
+    "ts-node": "^10.9.2",
     "typescript": "~5.4.5"
   },
   "keywords": [
