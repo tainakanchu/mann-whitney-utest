@@ -11,6 +11,7 @@
     "url": "https://github.com/lukem512/mann-whitney-utest.git"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
     "typescript": "~5.4.5"
   },
   "keywords": [
