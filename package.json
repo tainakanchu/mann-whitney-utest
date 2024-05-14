@@ -8,7 +8,9 @@
     "test": "ts-node test/test.ts",
     "lint": "biome lint .",
     "check": "biome check .",
-    "format": "biome check . --apply"
+    "format": "biome check . --apply",
+    "publish-package": "npm publish --access public",
+    "publish-dry": "npm publish --dry-run"
   },
   "repository": {
     "type": "git",
