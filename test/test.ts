@@ -88,8 +88,8 @@ const returnCode = 0;
 
 for (const t of tests) {
   try {
-    const u = mwu.test(t.samples);
-    if (!mwu.check(u, t.samples)) throw Error("Check failed");
+    const u = mwu.test(t.samples as [number[], number[]]);
+    if (!mwu.check(u, t.samples as [number[], number[]])) throw Error("Check failed");
     if (!t.expected) throw Error("Unexpected results");
 
     for (let index = 0; index < u.length; index++) {

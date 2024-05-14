@@ -4,7 +4,7 @@
 
 import * as mwu from "../src/mann-whitney";
 
-const samples = [
+const samples: mwu.SamplesPair = [
   [30, 14, 6],
   [12, 15, 16],
 ];

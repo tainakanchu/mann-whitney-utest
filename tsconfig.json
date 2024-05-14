@@ -7,9 +7,7 @@
     "strict": true,
     "esModuleInterop": true,
     "sourceMap": true,
-    "declaration": true,
-    // FIXME: Set to true
-    "noImplicitAny": false
+    "declaration": true
   },
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules", "dist", "test/**/*.ts"]
