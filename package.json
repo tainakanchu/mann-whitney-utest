@@ -2,8 +2,9 @@
   "name": "mann-whitney-utest",
   "version": "1.0.5",
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
-  "main": "src/mann-whitney.js",
+  "main": "dist/mann-whitney.js",
   "scripts": {
+    "build": "tsc",
     "test": "ts-node test/test.ts",
     "lint": "biome lint .",
     "check": "biome check .",
