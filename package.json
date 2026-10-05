@@ -1,6 +1,6 @@
 {
   "name": "@tainakanchu/mann-whitney-utest",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
   "keywords": [
     "mann-whitney",
