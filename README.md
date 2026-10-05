@@ -53,7 +53,7 @@ if (check(u, samples)) {
 ## Significance
 
 > [!WARNING]
-> `significant()` (and `criticalValue()`, on which it is based) is known to be statistically incorrect: it compares the smaller U value with a z-score of the normal approximation, which is not a valid significance test. Do not rely on it. It is planned to be fixed in a future major version.
+> `significant()` (and `criticalValue()`, on which it is based) is known to be statistically incorrect: it compares the smaller U value with a z-score of the normal approximation, which is not a valid significance test. Do not rely on it. It is planned to be fixed in a future major version ([#5](https://github.com/tainakanchu/mann-whitney-utest/issues/5)).
 
 ```ts
 import { significant } from "@tainakanchu/mann-whitney-utest";
