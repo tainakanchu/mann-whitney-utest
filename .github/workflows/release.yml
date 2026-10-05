@@ -1,7 +1,9 @@
 name: Release
 
-# GitHub Release を publish したら npm に公開する。
+# GitHub Release を publish したら npm に staged publish する。
 # 認証は npm trusted publishing (OIDC) を使うため NPM_TOKEN は不要。
+# 公開には maintainer による承認 (2FA) が必要:
+#   npmjs.com の Staged Packages タブ、または `npm stage approve <stage-id>`
 on:
   release:
     types: [published]
@@ -27,8 +29,8 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      # trusted publishing には npm CLI 11.5.1 以上が必要
-      - run: npm install -g npm@^11.5.1
+      # staged publishing には npm CLI 11.15.0 以上が必要
+      - run: npm install -g npm@^11.15.0
 
       - name: Verify tag matches package.json version
         env:
@@ -45,5 +47,18 @@ jobs:
       - run: pnpm build
       - run: pnpm test
 
-      # trusted publishing 経由の publish では provenance が自動付与される
-      - run: npm publish --access public
+      # trusted publishing 経由では provenance が自動付与される
+      - name: Stage publish
+        run: |
+          set -o pipefail
+          npm stage publish --access public 2>&1 | tee stage.log
+          STAGE_ID="$(grep -oE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' stage.log | tail -1)"
+          {
+            echo "### Staged ${GITHUB_REF_NAME}"
+            echo
+            echo "Approve on npmjs.com (Staged Packages tab) or run:"
+            echo
+            echo '```sh'
+            echo "npm stage approve ${STAGE_ID:-<stage-id>}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
