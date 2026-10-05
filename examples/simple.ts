@@ -2,7 +2,7 @@
 // Luke Mitchell, April 2016
 // https://github.com/lukem512/mann-whitney-utest
 
-import * as mwu from "../src/mann-whitney";
+import * as mwu from "../src/mann-whitney.ts";
 
 const samples: mwu.SamplesPair = [
   [30, 14, 6],
