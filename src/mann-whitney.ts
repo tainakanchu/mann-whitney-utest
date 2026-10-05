@@ -27,7 +27,7 @@ const rank = (list: { val: number }[]): RankedValue[] => {
   });
 
   // Third, use median values for groups with the same rank
-  for (let i = 0; i < rankedList.length; ) /* nothing */ {
+  for (let i = 0; i < rankedList.length;) /* nothing */ {
     let count = 1;
     let total = rankedList[i].rank;
 

@@ -2,43 +2,46 @@
   "name": "@tainakanchu/mann-whitney-utest",
   "version": "1.1.0",
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
-  "main": "dist/mann-whitney.js",
-  "scripts": {
-    "build": "tsc",
-    "test": "ts-node test/test.ts",
-    "lint": "biome lint .",
-    "check": "biome check .",
-    "format": "biome check . --apply",
-    "publish-package": "npm publish --access public",
-    "publish-dry": "npm publish --dry-run"
+  "keywords": [
+    "mann-whitney",
+    "mann–whitney–wilcoxon",
+    "mww",
+    "nonparametric",
+    "rank-sum",
+    "statistics",
+    "test",
+    "u",
+    "wilcoxon rank-sum",
+    "wilcoxon–mann–whitney"
+  ],
+  "homepage": "https://github.com/tainakanchu/mann-whitney-utest",
+  "bugs": {
+    "url": "https://github.com/tainakanchu/mann-whitney-utest/issues"
   },
+  "license": "MIT",
+  "author": "tainakanchu",
   "repository": {
     "type": "git",
     "url": "https://github.com/tainakanchu/mann-whitney-utest.git"
   },
+  "main": "dist/mann-whitney.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "oxlint",
+    "check": "pnpm lint && pnpm format:check",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "example": "node examples/simple.ts",
+    "publish-package": "npm publish --access public",
+    "publish-dry": "npm publish --dry-run"
+  },
   "devDependencies": {
-    "@biomejs/biome": "^1.7.3",
     "@types/node": "^20.12.12",
-    "ts-node": "^10.9.2",
-    "typescript": "~5.4.5"
+    "oxfmt": "0.72.0",
+    "oxlint": "1.87.0",
+    "typescript": "~5.4.5",
+    "vitest": "^5.0.3"
   },
-  "keywords": [
-    "u",
-    "test",
-    "mann-whitney",
-    "mann–whitney–wilcoxon",
-    "wilcoxon–mann–whitney",
-    "wilcoxon rank-sum",
-    "mww",
-    "rank-sum",
-    "statistics",
-    "nonparametric"
-  ],
-  "author": "tainakanchu",
-  "license": "MIT",
-  "packageManager": "pnpm@9.15.9",
-  "bugs": {
-    "url": "https://github.com/tainakanchu/mann-whitney-utest/issues"
-  },
-  "homepage": "https://github.com/tainakanchu/mann-whitney-utest"
+  "packageManager": "pnpm@12.9.1"
 }
