@@ -36,6 +36,7 @@
   ],
   "author": "tainakanchu",
   "license": "MIT",
+  "packageManager": "pnpm@9.15.9",
   "bugs": {
     "url": "https://github.com/tainakanchu/mann-whitney-utest/issues"
   },
