@@ -24,7 +24,11 @@
     "type": "git",
     "url": "https://github.com/tainakanchu/mann-whitney-utest.git"
   },
+  "files": [
+    "dist"
+  ],
   "main": "dist/mann-whitney.js",
+  "types": "dist/mann-whitney.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json",
@@ -34,6 +38,7 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "example": "node examples/simple.ts",
+    "prepublishOnly": "pnpm build",
     "publish-package": "npm publish --access public",
     "publish-dry": "npm publish --dry-run"
   },
