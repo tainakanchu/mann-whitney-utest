@@ -1,14 +1,18 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "outDir": "dist",
+    "target": "es2022",
+    "module": "node16",
+    "moduleResolution": "node16",
+    "lib": ["es2022"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": true
+    "skipLibCheck": true,
+    "erasableSyntaxOnly": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
-  "include": ["src/**/*", "test/**/*"],
-  "exclude": ["node_modules", "dist", "test/**/*.ts"]
+  "include": ["src/**/*", "test/**/*", "examples/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
