@@ -1,5 +1,13 @@
 import { describe, expect, expectTypeOf, it } from "vitest";
-import { check, test, type SamplesPair, type UValues } from "../src/mann-whitney";
+import {
+  check,
+  criticalValue,
+  type ReadonlySamplesPair,
+  type SamplesPair,
+  significant,
+  test,
+  type UValues,
+} from "../src/mann-whitney";
 
 describe("test()", () => {
   it.each<{ name: string; samples: SamplesPair; expected: UValues }>([
@@ -41,8 +49,20 @@ describe("test()", () => {
     const u = test(samples);
     expectTypeOf(u).toEqualTypeOf<UValues>();
     expectTypeOf(test).returns.toEqualTypeOf<UValues>();
-    expectTypeOf(samples).toExtend<SamplesPair>();
+    expectTypeOf(samples).toExtend<ReadonlySamplesPair>();
     expect(u).toEqual([4, 5]);
+  });
+
+  it("stays type-compatible with 1.1.0 (number[] in, number[] out)", () => {
+    const samples: SamplesPair = [
+      [30, 14, 6],
+      [12, 15, 16],
+    ];
+    const u: number[] = test(samples);
+    expectTypeOf(check).toBeCallableWith(u, samples);
+    expectTypeOf(criticalValue).toBeCallableWith(u, samples);
+    expectTypeOf(significant).toBeCallableWith(u, samples);
+    expect(check(u, samples)).toBe(true);
   });
 
   it("does not mutate the input samples", () => {
@@ -72,5 +92,12 @@ describe("test()", () => {
     { name: "Non-array sample (null)", samples: null },
   ])("rejects: $name", ({ samples }) => {
     expect(() => test(samples as never)).toThrow();
+  });
+
+  it.each<{ samples: unknown; message: string }>([
+    { samples: [null, [1]], message: "Samples cannot be empty" },
+    { samples: [[1], "ab"], message: "Sample 1 must be an array" },
+  ])("keeps 1.1.0 error messages: $message", ({ samples, message }) => {
+    expect(() => test(samples as never)).toThrow(message);
   });
 });

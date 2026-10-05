@@ -10,12 +10,18 @@ type RankedValue = {
 /**
  * The pair of U values `[u0, u1]` returned by {@link test}, one per sample.
  */
-export type UValues = readonly [u0: number, u1: number];
+export type UValues = [number, number];
 
 /**
- * Exactly two samples of numeric observations. The input arrays are never mutated.
+ * Exactly two samples of numeric observations.
  */
-export type SamplesPair = readonly [readonly number[], readonly number[]];
+export type SamplesPair = [number[], number[]];
+
+/**
+ * Readonly variant of {@link SamplesPair}, accepted by every function so that
+ * `as const` inputs can be passed. The input arrays are never mutated.
+ */
+export type ReadonlySamplesPair = readonly [readonly number[], readonly number[]];
 
 // Rank the list.
 // Inspired by https://gist.github.com/gungorbudak/1c3989cc26b9567c6e50
@@ -97,7 +103,7 @@ const uValue = (rank: number, observations: readonly number[]): number => {
  * @param samples The samples the U values were computed from.
  * @returns `true` if `u0 + u1 === n0 * n1`.
  */
-export const check = (u: UValues, samples: SamplesPair): boolean =>
+export const check = (u: readonly number[], samples: ReadonlySamplesPair): boolean =>
   u[0] + u[1] === samples[0].length * samples[1].length;
 
 /**
@@ -116,7 +122,7 @@ export const check = (u: UValues, samples: SamplesPair): boolean =>
  * @param samples The samples the U values were computed from.
  * @returns The |z| score of the normal approximation.
  */
-export const criticalValue = (u: UValues, samples: SamplesPair): number => {
+export const criticalValue = (u: readonly number[], samples: ReadonlySamplesPair): number => {
   const uVal = Math.min(u[0], u[1]);
   const prod = samples[0].length * samples[1].length;
   const n = samples[0].length + samples[1].length;
@@ -156,7 +162,7 @@ export const criticalValue = (u: UValues, samples: SamplesPair): number => {
  * @param u The U values, as returned by {@link test}.
  * @param samples The samples the U values were computed from.
  */
-export const significant = (u: UValues, samples: SamplesPair): boolean =>
+export const significant = (u: readonly number[], samples: ReadonlySamplesPair): boolean =>
   Math.min(u[0], u[1]) < criticalValue(u, samples);
 
 /**
@@ -169,14 +175,14 @@ export const significant = (u: UValues, samples: SamplesPair): boolean =>
  * @returns The U values `[u0, u1]`, one per sample.
  * @throws If `samples` is not an array of exactly two non-empty arrays.
  */
-export const test = (samples: SamplesPair): UValues => {
+export const test = (samples: ReadonlySamplesPair): UValues => {
   // Perform validation
   if (!Array.isArray(samples)) throw Error("Samples must be an array");
   if (samples.length !== 2) throw Error("Samples must contain exactly two samples");
 
   for (let i = 0; i < 2; i++) {
+    if (!samples[i] || samples[i].length === 0) throw Error("Samples cannot be empty");
     if (!Array.isArray(samples[i])) throw Error(`Sample ${i} must be an array`);
-    if (samples[i].length === 0) throw Error("Samples cannot be empty");
   }
 
   // Rank the entire list of observations

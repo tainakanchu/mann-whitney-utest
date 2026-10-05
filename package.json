@@ -25,7 +25,8 @@
     "url": "https://github.com/tainakanchu/mann-whitney-utest.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "main": "dist/mann-whitney.js",
   "types": "dist/mann-whitney.d.ts",
