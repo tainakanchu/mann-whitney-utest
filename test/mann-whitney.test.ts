@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { check, test, type SamplesPair } from "../src/mann-whitney";
+import { describe, expect, expectTypeOf, it } from "vitest";
+import { check, test, type SamplesPair, type UValues } from "../src/mann-whitney";
 
 describe("test()", () => {
-  it.each<{ name: string; samples: SamplesPair; expected: number[] }>([
+  it.each<{ name: string; samples: SamplesPair; expected: UValues }>([
     {
       name: "Simple U test #1",
       expected: [19.5, 44.5],
@@ -31,6 +31,26 @@ describe("test()", () => {
     const u = test(samples);
     expect(u).toEqual(expected);
     expect(check(u, samples)).toBe(true);
+  });
+
+  it("returns UValues and accepts `as const` input (types)", () => {
+    const samples = [
+      [30, 14, 6],
+      [12, 15, 16],
+    ] as const;
+    const u = test(samples);
+    expectTypeOf(u).toEqualTypeOf<UValues>();
+    expectTypeOf(test).returns.toEqualTypeOf<UValues>();
+    expectTypeOf(samples).toExtend<SamplesPair>();
+    expect(u).toEqual([4, 5]);
+  });
+
+  it("does not mutate the input samples", () => {
+    const a = [30, 14, 6];
+    const b = [12, 15, 16];
+    test([a, b]);
+    expect(a).toEqual([30, 14, 6]);
+    expect(b).toEqual([12, 15, 16]);
   });
 
   it.each<{ name: string; samples: unknown }>([
