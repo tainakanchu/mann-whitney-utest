@@ -7,35 +7,56 @@
 
 This is an NPM module that allows you to perform the Mann-Whitney U test on numeric samples. The Mann-Whitney U test is a nonparametric statistical test that does not assume a normal distribution.
 
-To use it, simply install via NPM and include it in your project file.
+## Installation
 
-```
-	var mwu = require('mann-whitney-utest');
-```
-
-Then, to test an array of samples, use the `test` method.
-
-```
-	var samples = [ [30, 14, 6], [12, 15, 16] ];
-	console.log(mwu.test(samples)); // [ 4, 5 ]
+```sh
+npm install @tainakanchu/mann-whitney-utest
 ```
 
-To test whether the result is significant, use the `significant` method. This tests the U-value against an approximate critical value.
+## Usage
 
-```
-	var u = mwu.test(samples);
-	if (mwu.significant(u, samples)) {
-		console.log('The data is significant!');
-	} else {
-		console.log('The data is not significant.');
-	}
+TypeScript / ESM:
+
+```ts
+import { test, check } from "@tainakanchu/mann-whitney-utest";
+
+const samples = [
+  [30, 14, 6],
+  [12, 15, 16],
+] as const;
+const u = test(samples);
+console.log(u); // [ 4, 5 ]
 ```
 
-You can check your answers using the `check` method. This exploits a property of the Mann-Whitney test that ensures the sum of the U values does not exceed the product of the number of observations.
+CommonJS:
 
+```js
+const mwu = require("@tainakanchu/mann-whitney-utest");
+
+console.log(
+  mwu.test([
+    [30, 14, 6],
+    [12, 15, 16],
+  ]),
+); // [ 4, 5 ]
 ```
-	var u = mwu.test(samples);
-	if (mwu.check(u, samples)) {
-		console.log('The values are correct');
-	}
+
+You can check your answers using the `check` method. This exploits a property of the Mann-Whitney test that ensures the sum of the U values equals the product of the number of observations.
+
+```ts
+const u = test(samples);
+if (check(u, samples)) {
+  console.log("The values are correct");
+}
+```
+
+## Significance
+
+> [!WARNING]
+> `significant()` (and `criticalValue()`, on which it is based) is known to be statistically incorrect: it compares the smaller U value with a z-score of the normal approximation, which is not a valid significance test. Do not rely on it. It is planned to be fixed in a future major version ([#5](https://github.com/tainakanchu/mann-whitney-utest/issues/5)).
+
+```ts
+import { significant } from "@tainakanchu/mann-whitney-utest";
+
+significant(u, samples); // not reliable, see the warning above
 ```

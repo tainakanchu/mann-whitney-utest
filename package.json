@@ -2,42 +2,53 @@
   "name": "@tainakanchu/mann-whitney-utest",
   "version": "1.1.0",
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
-  "main": "dist/mann-whitney.js",
-  "scripts": {
-    "build": "tsc",
-    "test": "ts-node test/test.ts",
-    "lint": "biome lint .",
-    "check": "biome check .",
-    "format": "biome check . --apply",
-    "publish-package": "npm publish --access public",
-    "publish-dry": "npm publish --dry-run"
+  "keywords": [
+    "mann-whitney",
+    "mann–whitney–wilcoxon",
+    "mww",
+    "nonparametric",
+    "rank-sum",
+    "statistics",
+    "test",
+    "u",
+    "wilcoxon rank-sum",
+    "wilcoxon–mann–whitney"
+  ],
+  "homepage": "https://github.com/tainakanchu/mann-whitney-utest",
+  "bugs": {
+    "url": "https://github.com/tainakanchu/mann-whitney-utest/issues"
   },
+  "license": "MIT",
+  "author": "tainakanchu",
   "repository": {
     "type": "git",
     "url": "https://github.com/tainakanchu/mann-whitney-utest.git"
   },
-  "devDependencies": {
-    "@biomejs/biome": "^1.7.3",
-    "@types/node": "^20.12.12",
-    "ts-node": "^10.9.2",
-    "typescript": "~5.4.5"
-  },
-  "keywords": [
-    "u",
-    "test",
-    "mann-whitney",
-    "mann–whitney–wilcoxon",
-    "wilcoxon–mann–whitney",
-    "wilcoxon rank-sum",
-    "mww",
-    "rank-sum",
-    "statistics",
-    "nonparametric"
+  "files": [
+    "dist",
+    "src"
   ],
-  "author": "tainakanchu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tainakanchu/mann-whitney-utest/issues"
+  "main": "dist/mann-whitney.js",
+  "types": "dist/mann-whitney.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "lint": "oxlint",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "example": "node examples/simple.ts",
+    "prepublishOnly": "pnpm build",
+    "publish-package": "npm publish --access public",
+    "publish-dry": "npm publish --dry-run"
   },
-  "homepage": "https://github.com/tainakanchu/mann-whitney-utest"
+  "devDependencies": {
+    "@types/node": "^24.19.1",
+    "oxfmt": "0.71.0",
+    "oxlint": "1.86.0",
+    "typescript": "7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "packageManager": "pnpm@12.9.1"
 }
